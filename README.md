@@ -4,7 +4,7 @@
 
 By [Ana Paredes](https://github.com/anagparedes)
 
-Web application for Technical Test workshop in [Solvex](https://solvex.com.do/). The goal was to build a project management site where users can create new projects, add tasks, and update their progress as they work.
+Web application for Technical Test workshop in [Solvex Dominicana](https://solvex.com.do/). The goal was to build a project management site where users can create new projects, add tasks, and update their progress as they work.
 
 ## Screenshots
 
