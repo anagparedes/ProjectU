@@ -1,28 +1,28 @@
 # ProjectU
 
-![ProjectU Logo](../OpTask-main/frontend/src/Images/ProjectU.png)
+![ProjectU Logo](/frontend/src/Images/ProjectU.png)
 
 By [Ana Paredes](https://github.com/anagparedes)
 
-Web application for Technical Test workshop in [ Solvex Dominicana](https://solvex.com.do/). The goal was to build a project management site where users can create new projects, add tasks, and update their progress as they work.
+Web application for Technical Test workshop in [Solvex](https://solvex.com.do/). The goal was to build a project management site where users can create new projects, add tasks, and update their progress as they work.
 
 ## Screenshots
 
-![Landing Page](../OpTask-main/frontend/src/Images/landing.png)
+![Landing Page](/frontend/src/Images/landing.png)
 
-![Dashboard](../OpTask-main/frontend/src/Images/dashboard.png)
+![Dashboard](/frontend/src/Images//dashboard.png)
 
-![Profile Page](../OpTask-main/frontend/src/Images/profile.png)
+![Profile Page](/frontend/src/Images//profile.png)
 
-![Sign Up Page](../OpTask-main/frontend/src/Images/register.png)
+![Sign Up Page](/frontend/src/Images/register.png)
 
-![Login Page](../OpTask-main/frontend/src/Images/login.png)
+![Login Page](/frontend/src/Images/login.png)
 
 ## How to Start
 
 Download or clone this repository. Then in both the ProjectU folder and frontend folder use:
 
-```
+```js
 npm install
 ```
 
