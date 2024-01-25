@@ -4,7 +4,8 @@
 
 By [Ana Paredes](https://github.com/anagparedes)
 
-Web application for Technical Test workshop in [Solvex Dominicana](https://solvex.com.do/). The goal was to build a project management site where users can create new projects, add tasks, and update their progress as they work.
+Web application with MERN Stack (MongoDB, Express, React, and Node.js) for Technical Test workshop in [Solvex Dominicana](https://solvex.com.do/). The goal was to build a project management site where users can create new projects, add tasks, and update their progress as they work.
+
 
 ## Screenshots
 
@@ -26,7 +27,6 @@ Download or clone this repository. Then in both the ProjectU folder and frontend
 npm install
 ```
 
-in order to download the dev tools and packages used in this application. We used Prettier to format this code and the project was linted with ESLint.
 In order to get the MongoDB working, create a ".env" file in your project folder. Create variables in the .env file called MONGO_URL and SESSION_SECRET and set it equal to your Mongo connection string and secret phrase respectively. To run this program open up terminal to the main folder and another terminal window then cd frontend.
 In main use:
 
