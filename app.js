@@ -28,8 +28,7 @@ app.use(
     // this next property is saving the session data in our DB
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,
-      dbName: "ProjectU_db",
-      collection: "ProjectU_collection",
+      dbName: "ProjectU",
     }),
     cookie: {
       maxAge: 7 * 1000 * 60 * 60 * 25, // cookies/sessions will last a week before requiring a re-login

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import LogoImage from "../Images/ProjectU.png";
@@ -8,16 +8,20 @@ import PropTypes from "prop-types";
 const Login = (props) => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [isDataLoading, setIsDataLoading] = useState(false);
+  const [userFullName, setUserFullName] = useState("");
 
   let handleEmailChange = (event) => {
     setEmailValue(event.target.value);
   };
+
   let handlePasswordChange = (event) => {
     setPasswordValue(event.target.value);
   };
   let handleSubmit = async (event) => {
     event.preventDefault();
 
+    setIsDataLoading(true);
     const res = await fetch("/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -27,18 +31,26 @@ const Login = (props) => {
       }),
     });
     const parsedRes = await res.json();
+    setIsDataLoading(false);
+
     if (parsedRes.loginState) {
-      toast.dark("Successful Login.");
+      setUserFullName(parsedRes.userFullName);
+      toast.dark("Successful Login.")
       props.loginPressed();
     } else {
-      toast.error("Incorrect email or password. Please try again.");
+      toast.dark("Incorrect email or password. Please try again.");
     }
   };
   if (!props.loggedIn) {
     return (
       <main className="form-signin text-center">
         <Link to="/">
-          <img src={LogoImage} alt="ProjectU Logo" width="200" height="200" />
+          <img
+            src={LogoImage}
+            alt="ProjectU Logo"
+            width="200"
+            height="200"
+          />
           <div className="row justify-content-center mb-4">
             <div>About ProjectU</div>
           </div>
@@ -71,9 +83,12 @@ const Login = (props) => {
             />
             <label htmlFor="userPassword">Password</label>
           </div>
-
-          <button type="submit" className="w-100 btn btn-lg submitBtn">
-            Log In
+          <button
+            type="submit"
+            className="w-100 btn btn-lg submitBtn"
+            disabled={isDataLoading}
+          >
+            {isDataLoading ? "Logging In..." : "Log In"}
           </button>
 
           <Link className="signup-link" to="/register">
@@ -82,11 +97,16 @@ const Login = (props) => {
         </form>
       </main>
     );
+  } else {
+    return (
+      <main className="form-signin text-center">
+        {/* Your logged-in user message */}
+        <div className="alert alert-success" role="alert">
+          Welcome back!, {userFullName}!
+        </div>
+      </main>
+    );
   }
-  // we lifted the redirect state up to the main App.js Router
-  // } else {
-  //   return <Redirect to="/dashboard" />;
-  // }
 };
 
 Login.propTypes = {

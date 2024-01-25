@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { useEffect,useState } from "react";
+import { Redirect, Link, useHistory } from "react-router-dom";
 import "./Register.css";
 import LogoImage from "../Images/ProjectU.png";
 import { toast } from "react-toastify";
@@ -12,6 +12,20 @@ const Register = () => {
   let [emailValue, setEmailValue] = useState("");
   let [passwordValue, setPasswordValue] = useState("");
   let [registerStatus, setRegisterStatus] = useState(false);
+  const [isDataLoading, setIsDataLoading] = useState(false);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (registerStatus) {
+      const redirectTimer = setTimeout(() => {
+        // Redirect logic here
+      }, 3000); // Redirect after 3 seconds (adjust as needed)
+
+      return () => clearTimeout(redirectTimer);
+    }
+  }, [registerStatus]);
+
 
   let handleNameChange = (event) => {
     setNameValue(event.target.value);
@@ -34,6 +48,7 @@ const Register = () => {
   let handleSubmit = async (event) => {
     event.preventDefault();
 
+    setIsDataLoading(true);
     const res = await fetch("/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -47,11 +62,15 @@ const Register = () => {
       }),
     });
     const parsedRes = await res.json();
+    setIsDataLoading(false);
     if (parsedRes.registered) {
-      toast.dark("Successfully created account.");
       setRegisterStatus(true);
+      toast.dark("Successfully created account.")
+      history.push("/login");
     } else {
-      toast.error("That email is taken. Please use a different email address.");
+      toast.dark(
+        "That email is taken. Please use a different email address."
+      );
     }
   };
   if (!registerStatus) {
@@ -147,8 +166,8 @@ const Register = () => {
             <label htmlFor="userPassword">Password</label>
           </div>
 
-          <button type="submit" className="w-100 btn btn-lg submitBtn">
-            Sign Up
+          <button type="submit" className="w-100 btn btn-lg submitBtn" disabled={isDataLoading}>
+          {isDataLoading ? "Signing Up..." : "Sign Up"}
           </button>
 
           <Link className="signup-link" to="/login">
